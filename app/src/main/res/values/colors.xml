@@ -7,5 +7,15 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="midnightblue">#191970</color>
+    <color name="midnightblue">#3B82F6</color>
+
+    <color name="chat_background">#F8F9FA</color>
+    <color name="text_primary">#212529</color>
+    <color name="text_hint">#6C757D</color>
+    <color name="input_background">#F5F5F5</color>
+    <color name="border_color">#E0E0E0</color>
+    <color name="message_sent">#3B82F6</color>
+    <color name="message_received">#FFFFFF</color>
+    <color name="online_status">#28A745</color>
+    <color name="offline_status">#DC3545</color>
 </resources>

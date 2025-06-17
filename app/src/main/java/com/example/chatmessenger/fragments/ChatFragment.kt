@@ -27,17 +27,11 @@ import de.hdodenhof.circleimageview.CircleImageView
 
 class ChatFragment : Fragment() {
 
-
     lateinit var args: ChatFragmentArgs
     lateinit var binding : FragmentChatBinding
-
     lateinit var viewModel : ChatAppViewModel
     lateinit var adapter : MessageAdapter
     lateinit var toolbar: Toolbar
-
-
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,10 +39,8 @@ class ChatFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_chat, container, false)
-
         return binding.root
     }
-
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -62,73 +54,45 @@ class ChatFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(ChatAppViewModel::class.java)
 
-
         args = ChatFragmentArgs.fromBundle(requireArguments())
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-
-
         Glide.with(view.getContext()).load(args.users.imageUrl!!).placeholder(R.drawable.person).dontAnimate().into(circleImageView);
         textViewName.setText(args.users.username)
         textViewStatus.setText(args.users.status)
 
-
         chatBackBtn.setOnClickListener {
-
-
             view.findNavController().navigate(R.id.action_chatFragment_to_homeFragment)
-
         }
 
         binding.sendBtn.setOnClickListener {
-
-
             viewModel.sendMessage(Utils.getUidLoggedIn(), args.users.userid!!, args.users.username!!, args.users.imageUrl!!)
-
-
-
-
-
         }
 
-
-
         viewModel.getMessages(args.users.userid!!).observe(viewLifecycleOwner, Observer {
-
-
-
-
-
             initRecyclerView(it)
-
-
-
         })
-
-
-
-
     }
 
     private fun initRecyclerView(list: List<Messages>) {
-
-
-        adapter = MessageAdapter()
-
-        val layoutManager = LinearLayoutManager(context)
-
-        binding.messagesRecyclerView.layoutManager = layoutManager
-        layoutManager.stackFromEnd = true
+        // Chỉ khởi tạo adapter một lần
+        if (!::adapter.isInitialized) {
+            adapter = MessageAdapter()
+            val layoutManager = LinearLayoutManager(context).apply {
+                stackFromEnd = true
+            }
+            binding.messagesRecyclerView.layoutManager = layoutManager
+            binding.messagesRecyclerView.adapter = adapter
+        }
 
         adapter.setList(list)
         adapter.notifyDataSetChanged()
-        binding.messagesRecyclerView.adapter = adapter
 
-
-
+        // Tự động scroll xuống tin nhắn mới nhất
+        if (list.isNotEmpty()) {
+            binding.messagesRecyclerView.scrollToPosition(list.size - 1)
+        }
     }
-
-
 }

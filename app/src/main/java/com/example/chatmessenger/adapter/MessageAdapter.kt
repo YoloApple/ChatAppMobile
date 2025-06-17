@@ -15,6 +15,8 @@ import com.example.chatmessenger.modal.Messages
 
 
 import androidx.recyclerview.widget.DiffUtil
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class MessageAdapter : RecyclerView.Adapter<MessageHolder>() {
 
@@ -43,18 +45,16 @@ class MessageAdapter : RecyclerView.Adapter<MessageHolder>() {
         holder.timeOfSent.visibility = View.VISIBLE
 
         holder.messageText.text = message.message
-        holder.timeOfSent.text = message.time?.substring(0, 5) ?: ""
 
-
-
-
-
-
-
-
-
-
-
+        // Định dạng lại thời gian
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+        val outputFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+        holder.timeOfSent.text = try {
+            val date = inputFormat.parse(message.time ?: "")
+            outputFormat.format(date!!)
+        } catch (e: Exception) {
+            ""
+        }
     }
 
     override fun getItemViewType(position: Int) =

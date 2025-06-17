@@ -1,144 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <layout>
-
-
     <data>
-
         <variable
             name="viewModel"
             type="com.example.chatmessenger.mvvm.ChatAppViewModel" />
-
     </data>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolBarChat"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/midnightblue">
+        android:layout_height="match_parent"
+        android:background="@color/chat_background">
 
+        <!-- Header Toolbar -->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolBarChat"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/midnightblue"
+            android:elevation="4dp">
 
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/back"
-            android:id="@+id/chatBackBtn"
-            android:layout_marginEnd="10dp"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
+                <ImageView
+                    android:id="@+id/chatBackBtn"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/back"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="4dp" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@id/chatBackBtn"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
 
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/chatImageViewUser"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/person"
+                        app:civ_border_width="2dp"
+                        app:civ_border_color="#FE2C54" />
 
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:orientation="vertical">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:src="@drawable/person"
-                app:civ_border_width="2dp"
-                app:civ_border_color="#FE2C54"
-                android:id="@+id/chatImageViewUser"/>
+                        <TextView
+                            android:id="@+id/chatUserName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="User name"
+                            android:textSize="16sp"
+                            android:textColor="#FFFFFF"
+                            android:fontFamily="@font/nunito_bold"
+                            android:maxLines="1"
+                            android:ellipsize="end" />
 
+                        <TextView
+                            android:id="@+id/chatUserStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Online"
+                            android:textSize="12sp"
+                            android:textColor="#CCFFFFFF"
+                            android:fontFamily="@font/nunito" />
 
-            <TextView
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <!-- Messages Container -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/toolBarChat"
+            android:layout_above="@id/layoutChatbox">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/messagesRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp"
+                android:clipToPadding="false"
+                android:scrollbars="vertical" />
+
+            <!-- Loading indicator -->
+            <ProgressBar
+                android:id="@+id/progressBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="User name"
-                android:textSize="18sp"
-                android:layout_marginTop="8dp"
-                android:layout_marginLeft="10dp"
-                android:textColor="#FFFFFF"
-                android:id="@+id/chatUserName"
-                android:fontFamily="@font/nunito_bold"/>
+                android:layout_gravity="center"
+                android:visibility="gone" />
 
+        </FrameLayout>
 
+        <!-- Chat Input -->
+        <LinearLayout
+            android:id="@+id/layoutChatbox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/chatbox_background"
+            android:elevation="8dp"
+            android:orientation="horizontal"
+            android:padding="8dp"
+            android:gravity="bottom">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp">
+
+                <EditText
+                    android:id="@+id/editTextMessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/message_input_background"
+                    android:hint="Nhập tin nhắn..."
+                    android:inputType="textMultiLine|textCapSentences"
+                    android:maxLines="4"
+                    android:minHeight="40dp"
+                    android:padding="12dp"
+                    android:text="@={viewModel.message}"
+                    android:textSize="16sp"
+                    android:textColor="@color/text_primary"
+                    android:textColorHint="@color/text_hint"
+                    android:importantForAutofill="no" />
+
+            </FrameLayout>
+
+            <ImageButton
+                android:id="@+id/sendBtn"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/send_button_background"
+                android:src="@android:drawable/ic_menu_send"
+                android:tint="@color/white"
+                android:clickable="true"
+                android:focusable="true"
+                android:contentDescription="Gửi tin nhắn" />
 
         </LinearLayout>
 
-
-
-
-    </androidx.appcompat.widget.Toolbar>
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Online"
-        android:textSize="16sp"
-        android:layout_marginTop="37dp"
-        android:layout_marginLeft="131dp"
-        android:textColor="#FFFFFF"
-        android:id="@+id/chatUserStatus"
-        android:fontFamily="@font/nunito"/>
-
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/messagesRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/toolBarChat"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_above="@id/layoutChatbox"
-        android:layout_marginBottom="10dp"
-        />
-
-
-
-
-
-    <LinearLayout
-        android:id="@+id/layoutChatbox"
-        android:layout_alignParentBottom="true"
-
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        android:minHeight="48dp"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/editTextMessage"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_weight="1"
-            android:text="@={viewModel.message}"
-            android:background="@android:color/transparent"
-            android:hint="Enter Message"
-            android:importantForAutofill="no"
-            android:inputType="textMultiLine"
-            android:maxLines="6" />
-
-        <Button
-            android:id="@+id/sendBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:clickable="true"
-            android:text="Send"
-            android:textSize="14sp" />
-    </LinearLayout>
-
-
-
-</RelativeLayout>
+    </RelativeLayout>
 
 </layout>
-

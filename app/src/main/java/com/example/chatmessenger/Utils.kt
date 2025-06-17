@@ -54,7 +54,7 @@ class Utils {
         fun getTime(): String {
 
 
-            val formatter = SimpleDateFormat("HH:mm:ss")
+            val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
             val date: Date = Date(System.currentTimeMillis())
             val stringdate = formatter.format(date)
 

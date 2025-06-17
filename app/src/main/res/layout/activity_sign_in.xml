@@ -4,115 +4,181 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
->
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="24dp"
+            android:paddingVertical="32dp">
 
-
-        <ImageView
-            android:layout_marginTop="30dp"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginBottom="20dp"
-            android:src="@drawable/chatapp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Developed by Developer Sam 2023 ©"
-            android:textColor="@color/black"
-            android:fontFamily="@font/nunito_bold"
-            android:textSize="16sp"
-            android:layout_marginBottom="20dp"/>
-
-
-            <TextView
-                android:id="@+id/titleText"
-                android:layout_width="wrap_content"
+            <!-- Card container cho toàn bộ form -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="40dp"
-                android:gravity="start"
-                android:fontFamily="@font/nunito"
-                android:textColor="@color/black"
-                android:text="Login to your account"
-                android:layout_marginLeft="10dp"
-                android:textSize="30sp" />
+                app:cardCornerRadius="24dp"
+                app:cardElevation="8dp"
+                app:cardBackgroundColor="@color/white"
+                android:layout_marginTop="20dp">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_margin="10dp"
-                android:background="@android:color/transparent"
-                app:boxBackgroundColor="@android:color/transparent">
-
-                <EditText
-                    android:id="@+id/loginetemail"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="Email"
-                    android:importantForAutofill="no"
-                    android:inputType="textEmailAddress"
-                    android:maxLength="25"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="0dp"
-                    tools:background="@android:color/transparent" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="32dp">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/editTextPasswordInputLayout"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_margin="10dp"
-                android:background="@android:color/transparent"
-                android:padding="0dp"
-                app:boxBackgroundColor="@android:color/transparent">
+                    <!-- Logo với background tròn -->
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="75dp"
+                        app:cardElevation="4dp"
+                        app:cardBackgroundColor="#F3F4F6"
+                        android:layout_marginBottom="32dp">
 
-                <EditText
-                    android:id="@+id/loginetpassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:ems="10"
-                    android:hint="Password"
-                    android:importantForAutofill="no"
-                    android:inputType="textPassword"
-                    android:maxLength="25"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="0dp"
-                    tools:background="@android:color/transparent" />
-            </com.google.android.material.textfield.TextInputLayout>
+                        <ImageView
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:src="@drawable/chatapp"
+                            android:padding="20dp"/>
 
+                    </androidx.cardview.widget.CardView>
 
-        <Button
-            android:id="@+id/loginButton"
-            android:layout_width="300dp"
-            android:layout_height="60dp"
-            android:text="Login"
-            android:textSize="16sp"
-            android:layout_marginTop="25dp"
-            />
+                    <!-- Title với gradient text effect -->
+                    <TextView
+                        android:id="@+id/titleText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="40dp"
+                        android:gravity="center"
+                        android:fontFamily="@font/nunito_bold"
+                        android:textColor="#1F2937"
+                        android:text="Welcome Back"
+                        android:textSize="32sp"
+                        android:letterSpacing="0.05" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:id="@+id/signInTextToSignUp"
-            android:layout_height="wrap_content"
-            android:text="Create a new account"
-            android:fontFamily="@font/nunito_bold"
-            android:layout_marginTop="20dp"
-            android:textColor="@color/black"/>
+                    <!-- Subtitle -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="32dp"
+                        android:gravity="center"
+                        android:fontFamily="@font/nunito"
+                        android:textColor="#6B7280"
+                        android:text="Sign in to continue to your account"
+                        android:textSize="16sp" />
 
+                    <!-- Email Input với design đẹp hơn -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_marginBottom="16dp"
+                        app:boxBackgroundColor="@android:color/transparent"
+                        app:boxCornerRadiusTopStart="16dp"
+                        app:boxCornerRadiusTopEnd="16dp"
+                        app:boxCornerRadiusBottomStart="16dp"
+                        app:boxCornerRadiusBottomEnd="16dp"
+                        app:boxStrokeColor="#E5E7EB"
+                        app:boxStrokeWidth="2dp"
+                        app:hintTextColor="#6B7280"
+                        app:startIconDrawable="@android:drawable/ic_dialog_email"
+                        app:startIconTint="#6B7280">
 
+                        <EditText
+                            android:id="@+id/loginetemail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ems="10"
+                            android:hint="Email Address"
+                            android:importantForAutofill="no"
+                            android:inputType="textEmailAddress"
+                            android:maxLength="25"
+                            android:paddingStart="16dp"
+                            android:paddingEnd="16dp"
+                            android:paddingVertical="16dp"
+                            android:textColor="#1F2937"
+                            android:textSize="16sp"
+                            android:fontFamily="@font/nunito" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-    </LinearLayout>
-</ScrollView>
+                    <!-- Password Input với design đẹp hơn -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/editTextPasswordInputLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_marginBottom="24dp"
+                        app:boxBackgroundColor="@android:color/transparent"
+                        app:boxCornerRadiusTopStart="16dp"
+                        app:boxCornerRadiusTopEnd="16dp"
+                        app:boxCornerRadiusBottomStart="16dp"
+                        app:boxCornerRadiusBottomEnd="16dp"
+                        app:boxStrokeColor="#E5E7EB"
+                        app:boxStrokeWidth="2dp"
+                        app:hintTextColor="#6B7280"
+                        app:startIconDrawable="@android:drawable/ic_lock_idle_lock"
+                        app:startIconTint="#6B7280"
+                        app:endIconMode="password_toggle"
+                        app:endIconTint="#6B7280">
+
+                        <EditText
+                            android:id="@+id/loginetpassword"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ems="10"
+                            android:hint="Password"
+                            android:importantForAutofill="no"
+                            android:inputType="textPassword"
+                            android:maxLength="25"
+                            android:paddingStart="16dp"
+                            android:paddingEnd="16dp"
+                            android:paddingVertical="16dp"
+                            android:textColor="#1F2937"
+                            android:textSize="16sp"
+                            android:fontFamily="@font/nunito" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- Login Button với gradient và bo tròn -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/loginButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:text="Sign In"
+                        android:textSize="18sp"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/nunito_bold"
+                        android:layout_marginBottom="24dp"
+                        app:cornerRadius="16dp"
+                        app:backgroundTint="#3B82F6"
+                        app:elevation="4dp"
+                        app:rippleColor="#60A5FA"
+                        android:letterSpacing="0.05" />
+
+                    <!-- Sign up text với màu accent -->
+                    <TextView
+                        android:id="@+id/signInTextToSignUp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Don't have an account? Sign up"
+                        android:fontFamily="@font/nunito_bold"
+                        android:textColor="#3B82F6"
+                        android:textSize="16sp"
+                        android:padding="8dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:focusable="true"/>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </ScrollView>
 </layout>

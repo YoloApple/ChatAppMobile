@@ -20,7 +20,9 @@ import com.example.chatmessenger.databinding.FragmentChatfromHomeBinding
 import com.example.chatmessenger.modal.Messages
 import com.example.chatmessenger.mvvm.ChatAppViewModel
 import de.hdodenhof.circleimageview.CircleImageView
-
+import android.annotation.SuppressLint
+import java.text.SimpleDateFormat
+import java.util.*
 class ChatfromHome : Fragment() {
 
 
@@ -107,21 +109,33 @@ class ChatfromHome : Fragment() {
 
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun initRecyclerView(list: List<Messages>) {
+        if (!::adapter.isInitialized) {
+            adapter = MessageAdapter()
+            val layoutManager = LinearLayoutManager(context).apply {
+                stackFromEnd = true
+            }
+            binding.messagesRecyclerView.layoutManager = layoutManager
+            binding.messagesRecyclerView.adapter = adapter
+        }
 
+        // Định dạng thời gian giống với format bạn đang dùng
+        val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
 
-        adapter = MessageAdapter()
+        val sortedList = list.sortedBy {
+            try {
+                formatter.parse(it.time ?: "")?.time ?: 0L
+            } catch (e: Exception) {
+                0L
+            }
+        }
 
-        val layoutManager = LinearLayoutManager(context)
-
-        binding.messagesRecyclerView.layoutManager = layoutManager
-        layoutManager.stackFromEnd = true
-
-        adapter.setList(list)
+        adapter.setList(sortedList)
         adapter.notifyDataSetChanged()
-        binding.messagesRecyclerView.adapter = adapter
 
-
-
+        if (sortedList.isNotEmpty()) {
+            binding.messagesRecyclerView.scrollToPosition(sortedList.size - 1)
+        }
     }
 }
