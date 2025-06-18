@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:id="@+id/toolbarMain"
-        android:background="#191970">
+        android:background="@color/midnightblue">
 
 
         <TextView

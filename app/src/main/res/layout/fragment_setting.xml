@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:id="@+id/toolbarMain"
-            android:background="#191970">
+            android:background="@color/midnightblue">
 
 
             <ImageView
@@ -111,7 +111,7 @@
             android:layout_width="150dp"
             android:layout_height="60dp"
             android:layout_marginTop="20dp"
-            android:backgroundTint="#191970"
+            android:backgroundTint="@color/midnightblue"
             android:text="Update"
             android:fontFamily="@font/nunito_bold"
             android:layout_gravity="center"
