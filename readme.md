@@ -12,7 +12,7 @@
 
 **Developed with ❤️ by Bùi Trung Dũng - 2025**
 
-<img src="images/1.png" alt="App Banner" width="300" height="600">
+<img src="images/1.jpg" alt="App Banner" width="300" height="600">
 
 </div>
 
